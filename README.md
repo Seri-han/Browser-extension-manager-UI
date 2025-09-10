@@ -81,7 +81,7 @@ Configurable light and dark theme.
 ![Screenshot](https://github.com/Seri-han/Browser-extension-manager-UI/blob/main/public/assets/images/preview.jpg)
 
 ## Enlace en vivo / Live Demo
-https://seri-han.github.io/Browser-extension-manager-UI/
+https://browser-extension-manager-ui-eight.vercel.app/
 
 ## Reflexión / Reflection
 
