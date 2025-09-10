@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import data from "./data/data.json";
 import Header from "./components/Header";
 import FilterButtons from "./components/FilterButtons";
@@ -10,10 +10,10 @@ function App() {
   const [filter, setFilter] = useState('all');
   const [darkMode, setDarkMode] = useState(false);
 
-  const filteredExtensions = extensions.filter((ext) => {
-    if (filter === 'all') return true;
-    return ext.status === filter;
-  });
+  const filteredExtensions = useMemo(() => {
+    if(filter === 'all') return extensions;
+    return extensions.filter((e) => e.status === filter);
+  }, [extensions, filter]);
 
   const toggleStatus = (id) => {
     setExtensions((prev) =>
@@ -26,12 +26,16 @@ function App() {
   );
   }
 
+  const restoreAll = () => {
+    setExtensions(data);
+  };
+
   return (
     <div className={darkMode ? 'dark' : 'light'}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
       <main>
       <h1>Extensions List</h1>
-      <FilterButtons setFilter={setFilter}/>
+      <FilterButtons setFilter={setFilter} filter={filter} onRestore={restoreAll}/>
       <section className="layout">
         {filteredExtensions.map((ext) => {
           <ExtensionCard key={ext.id} ext={ext} toggleStatus={toggleStatus}/>
