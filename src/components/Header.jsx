@@ -1,17 +1,18 @@
+import logo from "../assets/images/logo.svg";
+import dark from "../assets/images/icon-sun.svg";
+import light from "../assets/images/icon-moon.svg";
+
 export default function Header({ darkMode, setDarkMode }) {
-    return (
-        <header className="header">
-            <img className="header__logo" src="/src/assets/images/logo.svg"/>
-            <span
-            className='mode'
-            onClick={() => setDarkMode((prev) => !prev)}
-            style={{ cursor: 'pointer'}}
-            >
-                <img
-                className='mode_img'
-                src={darkMode ? '../assets/images/icon-moon.svg' : '../assets/images/icon-sun.svg'}
-                />
-                </span>
-        </header>
-    );
+  return (
+    <header className="head_wrapper">
+      <img className="logo" src={logo} alt="Logo" />
+      <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
+        <img
+          src={darkMode ? dark : light}
+          alt={darkMode ? "Dark mode" : "Light mode"}
+          className="theme-icon"
+        />
+      </button>
+    </header>
+  );
 }
